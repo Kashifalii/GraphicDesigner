@@ -1357,16 +1357,39 @@ header .img-wrap .img4 {
     border-radius: 12px;
 }
 
-/* Center the indicators */
+/* Ensure indicators are always centered and responsive */
 .carousel-indicators {
+    position: static;
+    /* prevents overlapping the image */
+    display: flex;
     justify-content: center;
+    flex-wrap: wrap;
+    /* wrap dots if screen is too small */
+    gap: 0.5rem;
+    /* space between dots */
+    margin-top: 1rem;
+    padding: 0;
 }
 
-.carousel-indicators button {
-    width: 10px;
-    height: 10px;
+/* Dots styling */
+.carousel-indicators [data-bs-target] {
+    flex: 0 0 auto;
+    /* keep fixed size */
+    width: 0.6rem;
+    /* ~10px but scalable with rem */
+    height: 0.6rem;
     border-radius: 50%;
-    position: relative;
+    background-color: #bbb;
+    border: none;
+    opacity: 0.6;
+    transition: all 0.3s ease;
+}
+
+/* Active dot */
+.carousel-indicators .active {
+    background-color: #fff;
+    opacity: 1;
+    transform: scale(1.3);
 }
 
 .carousel-control-prev .left,
