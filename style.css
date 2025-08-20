@@ -1352,7 +1352,6 @@ header .img-wrap .img4 {
     width: 100%;
     height: auto;
     max-height: 80vh;
-    /* keeps it responsive */
     object-fit: contain;
     border-radius: 12px;
 }
@@ -1360,23 +1359,25 @@ header .img-wrap .img4 {
 /* Ensure indicators are always centered and responsive */
 .carousel-indicators {
     position: static;
-    /* prevents overlapping the image */
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    /* wrap dots if screen is too small */
     gap: 0.5rem;
-    /* space between dots */
     margin-top: 1rem;
     padding: 0;
+}
+
+@media (max-width: 991.98px) {
+    .carousel-indicators {
+        display: none;
+    }
+
 }
 
 /* Dots styling */
 .carousel-indicators [data-bs-target] {
     flex: 0 0 auto;
-    /* keep fixed size */
     width: 0.6rem;
-    /* ~10px but scalable with rem */
     height: 0.6rem;
     border-radius: 50%;
     background-color: #bbb;
@@ -1403,7 +1404,6 @@ header .img-wrap .img4 {
     border-radius: 50%;
     padding: 20px;
 }
-
 
 
 /* media query */
