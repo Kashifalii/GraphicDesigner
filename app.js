@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const messages = {
     name: "Start word with a capital letter; no numbers allowed.",
     email: "Email must contain @gmail.com and not start from a number",
-    message: "Message is required to submit"
+    message: "Message is required to submit",
   };
 
   const createValidationMessage = (input, message) => {
@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
     error.textContent = message;
   };
 
-  const removeValidationMessage = input => {
+  const removeValidationMessage = (input) => {
     const error = input.nextElementSibling;
     if (error && error.classList.contains("error-message")) {
       error.textContent = "";
@@ -87,7 +87,7 @@ document.addEventListener("DOMContentLoaded", () => {
   );
 
   // Prevent form submission if validation fails
-  document.getElementById("contact-form").addEventListener("submit", e => {
+  document.getElementById("contact-form").addEventListener("submit", (e) => {
     const nameValid = /^([A-Z][a-zA-Z]*)(\s[A-Z][a-zA-Z]*)*$/.test(
       nameInput.value.trim()
     );
@@ -122,14 +122,14 @@ document.addEventListener("DOMContentLoaded", () => {
   leftButton.addEventListener("click", () => {
     tabsContainer.scrollBy({
       left: -scrollAmount,
-      behavior: "smooth" // Smooth scrolling
+      behavior: "smooth", // Smooth scrolling
     });
   });
 
   rightButton.addEventListener("click", () => {
     tabsContainer.scrollBy({
       left: scrollAmount,
-      behavior: "smooth"
+      behavior: "smooth",
     });
   });
 });
@@ -141,7 +141,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const navbarCollapse = document.getElementById("navbarSupportedContent"); // Select the collapsible navbar
   const togglerButton = document.querySelector(".navbar-toggler"); // Select the toggler button
 
-  navLinks.forEach(link => {
+  navLinks.forEach((link) => {
     link.addEventListener("click", () => {
       // Collapse the navbar by removing the 'show' class
       if (navbarCollapse.classList.contains("show")) {
@@ -155,26 +155,26 @@ document.addEventListener("DOMContentLoaded", () => {
 // emailjs
 document
   .getElementById("contact-form")
-  .addEventListener("submit", function(event) {
+  .addEventListener("submit", function (event) {
     event.preventDefault();
 
     // Collect form data
     const formData = {
       name: document.getElementById("name").value,
       email: document.getElementById("email").value,
-      message: document.getElementById("textarea").value
+      message: document.getElementById("textarea").value,
     };
 
     // Send email using EmailJS
     emailjs.send("service_8qvwuz5", "template_4zu7w7j", formData).then(
-      function(response) {
+      function (response) {
         alert("Message sent successfully!");
         console.log("SUCCESS!", response.status, response.text);
         document.getElementById("name").value = "";
         document.getElementById("email").value = "";
         document.getElementById("textarea").value = "";
       },
-      function(error) {
+      function (error) {
         alert("Failed to send message. Please try again.");
         console.log("FAILED...", error);
       }
@@ -187,7 +187,7 @@ const cursorDot = document.querySelector("[data-cursor-dot]");
 const cursorOutline = document.querySelector("[data-cursor-outline]");
 console.log(cursorOutline);
 
-window.addEventListener("mousemove", function(e) {
+window.addEventListener("mousemove", function (e) {
   const posX = e.clientX;
   const posY = e.clientY;
 
@@ -200,7 +200,7 @@ window.addEventListener("mousemove", function(e) {
   cursorOutline.animate(
     {
       left: `${posX}px`,
-      top: `${posY}px`
+      top: `${posY}px`,
     },
     { duration: 500, fill: "forwards" }
   );
@@ -262,3 +262,60 @@ function composeEmail(recipient, subject, body) {
   // Redirect to the mailto link
   window.location.href = mailtoLink;
 }
+
+// -------------Modal----------------
+
+const carouselModal = document.getElementById("carouselModal");
+const indicators = carouselModal.querySelector(".carousel-indicators");
+const inner = carouselModal.querySelector(".carousel-inner");
+
+carouselModal.addEventListener("show.bs.modal", function (event) {
+  const trigger = event.relatedTarget;
+
+  // Case 1: direct data-images array
+  let images = trigger.getAttribute("data-images");
+
+  // Case 2: generate dynamically if numbers are given
+  if (!images) {
+    const folder = trigger.getAttribute("data-folder");
+    const prefix = trigger.getAttribute("data-prefix");
+    const start = parseInt(trigger.getAttribute("data-start"), 10);
+    const end = parseInt(trigger.getAttribute("data-end"), 10);
+
+    images = [];
+    for (let i = start; i <= end; i++) {
+      const num = i.toString().padStart(2, "0"); // ensures 04, 05...
+      images.push(`${folder}${prefix}${num}.jpg`);
+    }
+  } else {
+    images = JSON.parse(images);
+  }
+
+  // Clear old content
+  indicators.innerHTML = "";
+  inner.innerHTML = "";
+
+  // Populate new content
+  images.forEach((src, i) => {
+    // Indicator
+    const indicator = document.createElement("button");
+    indicator.type = "button";
+    indicator.setAttribute("data-bs-target", "#dynamicCarousel");
+    indicator.setAttribute("data-bs-slide-to", i);
+    if (i === 0) indicator.classList.add("active");
+    indicators.appendChild(indicator);
+
+    // Carousel item
+    const item = document.createElement("div");
+    item.classList.add("carousel-item");
+    if (i === 0) item.classList.add("active");
+
+    const img = document.createElement("img");
+    img.src = src;
+    img.className = "d-block w-100";
+    img.alt = `Slide ${i + 1}`;
+
+    item.appendChild(img);
+    inner.appendChild(item);
+  });
+});

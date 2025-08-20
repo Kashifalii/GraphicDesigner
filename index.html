@@ -446,44 +446,43 @@
                         </div>
                     </div>
                 </div>
-
+                <!-- ---------- -->
                 <div class="tab-pane fade" id="detail" role="tabpanel">
                     <div class="masonry">
                         <div class="portfolio-item">
                             <img src="./assets/imgs/projectImgs/1-3.webp" loading="lazy" alt="Portfolio 1">
                         </div>
                         <div class="portfolio-item">
-                            <a href="/assets/Tailwind-Guildlines.pdf" target="_blank">
-                                <img src="./assets/imgs/projectImgs/Guidlines.png" loading="lazy" alt="Portfolio 6">
+                            <img src="./assets/imgs/projectImgs/Guidlines.png" loading="lazy" alt="Portfolio 6">
                             </a>
                         </div>
                         <div class="portfolio-item">
-                            <a href="/assets/Tailwind-Guildlines.pdf" target="_blank">
-                                <img src="./assets/imgs/projectImgs/Guidlines.png" loading="lazy" alt="Portfolio 6">
+                            <img src="./assets/imgs/projectImgs/Guidlines.png" loading="lazy" alt="Portfolio 6">
                             </a>
                         </div>
                         <!--  -->
                         <div class="portfolio-item ">
-                            <a href="/assets/Tailwind-Guildlines.pdf" target="_blank">
-                                <img src="./assets/imgs/projectImgs/2-3.webp" loading="lazy" alt="Portfolio 6">
+                            <img src="./assets/imgs/projectImgs/2-3.webp" loading="lazy" alt="Portfolio 6"
+                                data-bs-toggle="modal" data-bs-target="#carouselModal"
+                                data-folder="/assets/imgs/projectImgs/First/" data-prefix="Branding-" data-start="4"
+                                data-end="18">
                             </a>
                         </div>
                         <div class="portfolio-item ">
-                            <a href="/assets/Tailwind-Guildlines.pdf" target="_blank">
-                                <img src="./assets/imgs/projectImgs/6-1.webp" loading="lazy" alt="Portfolio 6">
+                            <img src="./assets/imgs/projectImgs/6-1.webp" loading="lazy" alt="Portfolio 6"
+                                data-bs-toggle="modal" data-bs-target="#carouselModal"
+                                data-images='["/assets/imgs/projectImgs/Two/Brand Identity-01.jpg","/assets/imgs/projectImgs/Two/Brand Identity-02.jpg","/assets/imgs/projectImgs/Two/Brand Identity-03.jpg"]'>
                             </a>
                         </div>
                         <!--  -->
                         <div class="portfolio-item ">
-                            <a href="/assets/Tailwind-Guildlines.pdf" target="_blank">
-                                <img src="./assets/imgs/projectImgs/Guidlines.png" loading="lazy" alt="Portfolio 6">
+                            <img src="./assets/imgs/projectImgs/Guidlines.png" loading="lazy" alt="Portfolio 6">
                             </a>
                         </div>
 
-                     
+
                         <div class="portfolio-item ">
-                            <a href="/assets/Tailwind-Guildlines.pdf" target="_blank">
-                                <img src="./assets/imgs/projectImgs/Guidlines.png" loading="lazy" alt="Portfolio 6">
+                            <img src="./assets/imgs/projectImgs/Guidlines.png" loading="lazy" alt="Portfolio 6">
                             </a>
                         </div>
                     </div>
@@ -529,6 +528,41 @@
                     </div>
                 </div>
             </div>
+            <!-- modal -->
+            <!-- ===== Single Modal with Clean Full-Image Carousel ===== -->
+            <div class="modal fade" id="carouselModal" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-xl modal-dialog-centered">
+                    <div class="modal-content bg-transparent border-0">
+                        <div class="modal-body p-0">
+                            <div id="dynamicCarousel" class="carousel slide" data-bs-ride="carousel">
+
+                                <!-- Carousel Inner -->
+                                <div class="carousel-inner">
+                                    <!-- JS will inject images here -->
+                                </div>
+
+                                <!-- Controls (side buttons, outside image) -->
+                                <button class="carousel-control-prev" type="button" data-bs-target="#dynamicCarousel"
+                                    data-bs-slide="prev">
+                                    <span class="left"><i class="fa-solid fa-chevron-left"></i></span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#dynamicCarousel"
+                                    data-bs-slide="next">
+                                    <span class="right"><i class="fa-solid fa-chevron-right"></i></span>
+                                </button>
+
+                                <!-- Indicators (below image) -->
+                                <div class="carousel-indicators position-static mt-3"></div>
+                            </div>
+                        </div>
+
+                        <!-- Close Button (top-right) -->
+                        <button type="button" class="btn-close btn-close-black position-absolute top-0 end-0 m-3"
+                            data-bs-dismiss="modal"></button>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 
