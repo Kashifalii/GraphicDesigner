@@ -181,31 +181,35 @@ document
     );
   });
 
-// cursor Animation
-
+// Optimized Cursor Animation (No Forced Reflow)
 const cursorDot = document.querySelector("[data-cursor-dot]");
 const cursorOutline = document.querySelector("[data-cursor-outline]");
-console.log(cursorOutline);
 
-window.addEventListener("mousemove", function (e) {
-  const posX = e.clientX;
-  const posY = e.clientY;
+let mouseX = 0,
+  mouseY = 0;
+let outlineX = 0,
+  outlineY = 0;
 
-  cursorDot.style.left = `${posX}px`;
-  cursorDot.style.top = `${posY}px`;
-
-  cursorOutline.style.left = `${posX}px`;
-  cursorOutline.style.top = `${posY}px`;
-
-  cursorOutline.animate(
-    {
-      left: `${posX}px`,
-      top: `${posY}px`,
-    },
-    { duration: 500, fill: "forwards" }
-  );
+// Track mouse position
+window.addEventListener("mousemove", (e) => {
+  mouseX = e.clientX;
+  mouseY = e.clientY;
 });
 
+// Smooth animation loop
+function animateCursor() {
+  // Cursor dot follows instantly
+  cursorDot.style.transform = `translate(${mouseX}px, ${mouseY}px)`;
+
+  // Cursor outline follows smoothly
+  outlineX += (mouseX - outlineX) * 0.15;
+  outlineY += (mouseY - outlineY) * 0.15;
+  cursorOutline.style.transform = `translate(${outlineX}px, ${outlineY}px)`;
+
+  requestAnimationFrame(animateCursor);
+}
+
+animateCursor();
 // ====== Navbar Animations =====
 
 function toggleNavbarOnScroll() {
